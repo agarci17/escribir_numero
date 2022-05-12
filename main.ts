@@ -153,6 +153,35 @@ function escribe_numero (núm: number) {
             `)
     }
 }
+input.onButtonPressed(Button.AB, function () {
+    for (let index = 0; index < 10; index++) {
+        basic.clearScreen()
+        basic.pause(100)
+        escribe_numero(numero)
+        basic.pause(100)
+    }
+})
+let numero = 0
+makerbit.connectSerialMp3(DigitalPin.P0, DigitalPin.P1)
+numero = 0
+escribe_numero(numero)
 basic.forever(function () {
-	
+    if (input.buttonIsPressed(Button.A)) {
+        basic.pause(500)
+        if (input.buttonIsPressed(Button.A)) {
+            basic.showIcon(IconNames.Heart)
+        } else {
+            numero += -1
+            escribe_numero(numero)
+        }
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        basic.pause(500)
+        if (input.buttonIsPressed(Button.B)) {
+            basic.showIcon(IconNames.Square)
+        } else {
+            numero += 1
+            escribe_numero(numero)
+        }
+    }
 })
